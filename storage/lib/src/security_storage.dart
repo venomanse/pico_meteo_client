@@ -10,7 +10,7 @@ class SecurityStorage extends KeyValueSecurityStorageImpl {
       : super(
           storageName: 'security_storage',
           //openssl rand -base64 32
-          key: 'zwQbWbzvnl4b/PaqdAGwpmCrZY2seGl6AVAp2GKPo3M=',
+          key: 'IryMKTTOBIVYHMGVBt7pIu8eNpZm5Z403VyLbOzz7HM=',
         );
 }
 
