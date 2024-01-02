@@ -15,6 +15,7 @@ final class UsersApi {
 
   RecordService get users => _pocketBase.collection('users');
 
+  /// Create a new user with email and password and send a verification email
   Future<User> createUser({required CreateUserRequest request}) async {
     final body = request.toJson();
     final result = await users.create(body: body);
@@ -25,6 +26,7 @@ final class UsersApi {
     return User.fromJson(json);
   }
 
+  /// Log in with email and password
   Future<User> logIn({required LogInWithEmailRequest request}) async {
     final result = await users.authWithPassword(
       request.email,

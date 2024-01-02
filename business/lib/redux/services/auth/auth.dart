@@ -1,12 +1,13 @@
 import 'dart:async';
 
+import 'package:models/user.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 import '../../../common/services/interface.dart';
 
 abstract class AuthServiceDriverInterface {
   void onLogout();
-  void onLogin();
+  void onLogin({required User user});
 }
 
 class AuthService extends DisposableServiceInterface {
@@ -24,12 +25,13 @@ class AuthService extends DisposableServiceInterface {
     super.start();
 
     _pocketBase.authStore.onChange.listen((event) {
-      if (event.model == null) {
-        print(event.token);
+      final model = event.model;
+      if (model == null) {
         _driver.onLogout();
-      } else {
-        print(event.token);
-        _driver.onLogin();
+      } else if (model is RecordModel) {
+        final json = model.toJson();
+        final user = User.fromJson(json);
+        _driver.onLogin(user: user);
       }
     });
   }

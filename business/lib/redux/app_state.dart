@@ -30,7 +30,7 @@ class AppState with _$AppState {
         registration: RegistrationState(),
         forgotPassword: ForgotPasswordState(),
         resetPassword: ResetPasswordState(),
-        session: SessionState(),
+        session: SessionStateIdle(),
         wait: Wait.empty,
       );
 }
