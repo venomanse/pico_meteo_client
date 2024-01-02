@@ -13,7 +13,6 @@ class TryAutoLogInAction extends ReduxAction<AppState> {
   @override
   void after() => dispatchSync(
         WaitAction.remove(LogInWaiting.autoLogin),
-        notify: false,
       );
 
   @override
