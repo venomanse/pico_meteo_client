@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:http_client/requests/log_in_with_email_request.dart';
+import 'package:storage/storage.dart';
 
 import '../../../service_locator.dart';
 import '../../app_state.dart';
@@ -10,11 +11,13 @@ import '../models/log_in_state.dart';
 
 class LogInWithEmailAction extends ReduxAction<AppState> {
   @override
-  void before() => dispatchSync(WaitAction.add(LogInWaiting.wait));
+  void before() => dispatchSync(WaitAction.add(LogInWaiting.login));
 
   @override
-  void after() =>
-      dispatchSync(WaitAction.remove(LogInWaiting.wait), notify: false);
+  void after() => dispatchSync(
+        WaitAction.remove(LogInWaiting.login),
+        notify: false,
+      );
 
   @override
   Future<AppState> reduce() async {
@@ -26,6 +29,10 @@ class LogInWithEmailAction extends ReduxAction<AppState> {
         email: email,
         password: password,
       ),
+    );
+
+    await SecurityStorage().putBiometricData(
+      BiometricData(email: email, password: password),
     );
 
     return state.copyWith(logIn: const LogInState());

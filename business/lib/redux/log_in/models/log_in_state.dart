@@ -10,4 +10,4 @@ class LogInState with _$LogInState {
   }) = _LogInState;
 }
 
-enum LogInWaiting { wait }
+enum LogInWaiting { login, autoLogin }

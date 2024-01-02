@@ -2,7 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http_client/users.dart';
 import 'package:pocketbase/pocketbase.dart';
-import 'package:storage/key_value_storage.dart';
+import 'package:storage/storage.dart';
 
 import 'environment.dart';
 import 'redux/app_state.dart';
@@ -19,7 +19,7 @@ ConnectivityService get getConnectivity => _locator.get<ConnectivityService>();
 UsersApi get getUsersApi => _locator.get<UsersApi>();
 
 Future<void> initLocator(Store<AppState> store, Environment env) async {
-  await initHiveStorage();
+  await setupStorage();
 
   // Connectivity Service
   final connectivity = ConnectivityService(

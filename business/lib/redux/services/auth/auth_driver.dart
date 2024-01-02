@@ -2,7 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:models/user.dart';
 
 import '../../app_state.dart';
-import '../../session/actions/set_session_user_action.dart';
+import '../../session/actions/set_session_action.dart';
 import 'auth.dart';
 
 class AuthDriver implements AuthServiceDriverInterface {
@@ -12,7 +12,7 @@ class AuthDriver implements AuthServiceDriverInterface {
 
   @override
   void onLogin({required User user}) {
-    _store.dispatchSync(SetSessionUserAction(user: user));
+    _store.dispatchSync(SetSessionAction(user: user));
   }
 
   @override

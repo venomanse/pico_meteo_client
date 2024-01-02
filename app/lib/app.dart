@@ -1,5 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:business/redux/app_state.dart';
+import 'package:business/redux/log_in/actions/try_auto_log_in_action.dart';
+import 'package:business/redux/log_in/log_in_selectors.dart';
 import 'package:business/redux/session/session_selectors.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,7 @@ class _AppConnectorState extends State<AppConnector> {
   Widget build(BuildContext context) => StoreConnector<AppState, _Vm>(
         debug: this,
         vm: () => _Factory(widget),
+        onInit: (store) async => store.dispatchAsync(TryAutoLogInAction()),
         builder: (context, vm) {
           final router = RoutersMap.instance.routerWithFlow(vm.flow);
 
@@ -63,10 +66,14 @@ class _Factory extends BaseFactory<AppConnector, _Vm> {
       );
     }
 
+    if (selectAutoLogInWaiting(state)) {
+      return _Vm(
+        flow: const SplashFlow(),
+      );
+    }
+
     return _Vm(
-      flow: const AuthFlow(
-        redirection: AuthFlowRedirection.login,
-      ),
+      flow: const AuthFlow(),
     );
   }
 }

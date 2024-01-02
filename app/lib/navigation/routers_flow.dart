@@ -8,21 +8,8 @@ sealed class RoutersFlow extends Equatable {
   List<Object?> get props => [];
 }
 
-enum AuthFlowRedirection {
-  login,
-  resetPassword,
-  createPassword;
-}
-
 final class AuthFlow extends RoutersFlow {
-  const AuthFlow({
-    required this.redirection,
-  });
-
-  final AuthFlowRedirection redirection;
-
-  @override
-  List<Object?> get props => [redirection];
+  const AuthFlow();
 }
 
 final class SplashFlow extends RoutersFlow {

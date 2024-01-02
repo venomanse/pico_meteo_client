@@ -31,6 +31,7 @@ class AuthService extends DisposableServiceInterface {
       } else if (model is RecordModel) {
         final json = model.toJson();
         final user = User.fromJson(json);
+
         _driver.onLogin(user: user);
       }
     });
