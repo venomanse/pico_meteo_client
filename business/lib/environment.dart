@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 enum EnvironmentType {
@@ -18,8 +17,10 @@ final class Environment {
     const baseUrl = 'https://prod.com';
     const type = EnvironmentType.production;
 
-    return const Environment._(
-      baseUrl: baseUrl,
+    await dotenv.load(isOptional: true);
+
+    return Environment._(
+      baseUrl: dotenv.maybeGet('BASE_URL', fallback: baseUrl)!,
       type: type,
     );
   }
@@ -28,17 +29,10 @@ final class Environment {
     const baseUrl = 'https://dev.com';
     const type = EnvironmentType.development;
 
-    if (!kReleaseMode) {
-      await dotenv.load(isOptional: true);
+    await dotenv.load(isOptional: true);
 
-      return Environment._(
-        baseUrl: dotenv.maybeGet('BASE_URL', fallback: baseUrl)!,
-        type: type,
-      );
-    }
-
-    return const Environment._(
-      baseUrl: baseUrl,
+    return Environment._(
+      baseUrl: dotenv.maybeGet('BASE_URL', fallback: baseUrl)!,
       type: type,
     );
   }

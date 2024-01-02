@@ -19,5 +19,6 @@
     "mustContainAtLeastOneLowercase": "Must contain at least one lowercase",
     "mustContainAtLeastOneUppercase": "Must contain at least one uppercase",
     "passwordsDoNotMatch": "Passwords do not match",
-    "requiredField": "Required field"
+    "requiredField": "Required field",
+    "home": "Home"
 }
