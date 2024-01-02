@@ -1,10 +1,8 @@
 import 'package:models/user.dart';
 import 'package:pocketbase/pocketbase.dart';
 
-import 'requests/create_user_request.dart';
 import 'requests/log_in_with_email_request.dart';
-
-typedef OnChange = void Function(Object user);
+import 'requests/new_user_request.dart';
 
 final class UsersApi {
   UsersApi({
@@ -13,14 +11,14 @@ final class UsersApi {
 
   final PocketBase _pocketBase;
 
-  RecordService get users => _pocketBase.collection('users');
+  RecordService get collection => _pocketBase.collection('users');
 
   /// Create a new user with email and password and send a verification email
-  Future<User> createUser({required CreateUserRequest request}) async {
+  Future<User> create({required NewUserRequest request}) async {
     final body = request.toJson();
-    final result = await users.create(body: body);
+    final result = await collection.create(body: body);
 
-    await users.requestVerification(request.email);
+    await collection.requestVerification(request.email);
     final json = result.toJson();
 
     return User.fromJson(json);
@@ -28,7 +26,7 @@ final class UsersApi {
 
   /// Log in with email and password
   Future<User> logIn({required LogInWithEmailRequest request}) async {
-    final result = await users.authWithPassword(
+    final result = await collection.authWithPassword(
       request.email,
       request.password,
     );

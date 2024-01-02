@@ -22,6 +22,8 @@ mixin _$AppState {
   ForgotPasswordState get forgotPassword => throw _privateConstructorUsedError;
   ResetPasswordState get resetPassword => throw _privateConstructorUsedError;
   SessionState get session => throw _privateConstructorUsedError;
+  Bme280MeasurementsState get bme280Measurements =>
+      throw _privateConstructorUsedError;
   Wait get wait => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,6 +43,7 @@ abstract class $AppStateCopyWith<$Res> {
       ForgotPasswordState forgotPassword,
       ResetPasswordState resetPassword,
       SessionState session,
+      Bme280MeasurementsState bme280Measurements,
       Wait wait});
 
   $ConnectivityStateCopyWith<$Res> get connectivity;
@@ -49,6 +52,7 @@ abstract class $AppStateCopyWith<$Res> {
   $ForgotPasswordStateCopyWith<$Res> get forgotPassword;
   $ResetPasswordStateCopyWith<$Res> get resetPassword;
   $SessionStateCopyWith<$Res> get session;
+  $Bme280MeasurementsStateCopyWith<$Res> get bme280Measurements;
 }
 
 /// @nodoc
@@ -70,6 +74,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? forgotPassword = null,
     Object? resetPassword = null,
     Object? session = null,
+    Object? bme280Measurements = null,
     Object? wait = null,
   }) {
     return _then(_value.copyWith(
@@ -97,6 +102,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as SessionState,
+      bme280Measurements: null == bme280Measurements
+          ? _value.bme280Measurements
+          : bme280Measurements // ignore: cast_nullable_to_non_nullable
+              as Bme280MeasurementsState,
       wait: null == wait
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -151,6 +160,15 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       return _then(_value.copyWith(session: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $Bme280MeasurementsStateCopyWith<$Res> get bme280Measurements {
+    return $Bme280MeasurementsStateCopyWith<$Res>(_value.bme280Measurements,
+        (value) {
+      return _then(_value.copyWith(bme280Measurements: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -168,6 +186,7 @@ abstract class _$$AppStateImplCopyWith<$Res>
       ForgotPasswordState forgotPassword,
       ResetPasswordState resetPassword,
       SessionState session,
+      Bme280MeasurementsState bme280Measurements,
       Wait wait});
 
   @override
@@ -182,6 +201,8 @@ abstract class _$$AppStateImplCopyWith<$Res>
   $ResetPasswordStateCopyWith<$Res> get resetPassword;
   @override
   $SessionStateCopyWith<$Res> get session;
+  @override
+  $Bme280MeasurementsStateCopyWith<$Res> get bme280Measurements;
 }
 
 /// @nodoc
@@ -201,6 +222,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? forgotPassword = null,
     Object? resetPassword = null,
     Object? session = null,
+    Object? bme280Measurements = null,
     Object? wait = null,
   }) {
     return _then(_$AppStateImpl(
@@ -228,6 +250,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as SessionState,
+      bme280Measurements: null == bme280Measurements
+          ? _value.bme280Measurements
+          : bme280Measurements // ignore: cast_nullable_to_non_nullable
+              as Bme280MeasurementsState,
       wait: null == wait
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -246,6 +272,7 @@ class _$AppStateImpl implements _AppState {
       required this.forgotPassword,
       required this.resetPassword,
       required this.session,
+      required this.bme280Measurements,
       required this.wait});
 
   @override
@@ -261,11 +288,13 @@ class _$AppStateImpl implements _AppState {
   @override
   final SessionState session;
   @override
+  final Bme280MeasurementsState bme280Measurements;
+  @override
   final Wait wait;
 
   @override
   String toString() {
-    return 'AppState(connectivity: $connectivity, logIn: $logIn, registration: $registration, forgotPassword: $forgotPassword, resetPassword: $resetPassword, session: $session, wait: $wait)';
+    return 'AppState(connectivity: $connectivity, logIn: $logIn, registration: $registration, forgotPassword: $forgotPassword, resetPassword: $resetPassword, session: $session, bme280Measurements: $bme280Measurements, wait: $wait)';
   }
 
   @override
@@ -283,12 +312,22 @@ class _$AppStateImpl implements _AppState {
             (identical(other.resetPassword, resetPassword) ||
                 other.resetPassword == resetPassword) &&
             (identical(other.session, session) || other.session == session) &&
+            (identical(other.bme280Measurements, bme280Measurements) ||
+                other.bme280Measurements == bme280Measurements) &&
             (identical(other.wait, wait) || other.wait == wait));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, connectivity, logIn,
-      registration, forgotPassword, resetPassword, session, wait);
+  int get hashCode => Object.hash(
+      runtimeType,
+      connectivity,
+      logIn,
+      registration,
+      forgotPassword,
+      resetPassword,
+      session,
+      bme280Measurements,
+      wait);
 
   @JsonKey(ignore: true)
   @override
@@ -305,6 +344,7 @@ abstract class _AppState implements AppState {
       required final ForgotPasswordState forgotPassword,
       required final ResetPasswordState resetPassword,
       required final SessionState session,
+      required final Bme280MeasurementsState bme280Measurements,
       required final Wait wait}) = _$AppStateImpl;
 
   @override
@@ -319,6 +359,8 @@ abstract class _AppState implements AppState {
   ResetPasswordState get resetPassword;
   @override
   SessionState get session;
+  @override
+  Bme280MeasurementsState get bme280Measurements;
   @override
   Wait get wait;
   @override

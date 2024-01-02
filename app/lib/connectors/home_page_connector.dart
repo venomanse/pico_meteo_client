@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:business/redux/app_state.dart';
+import 'package:business/redux/bme280_measurements/actions/retrieve_bme280_measurements_action.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/pages/home_page.dart';
@@ -13,6 +14,9 @@ class HomePageConnector extends StatelessWidget {
   Widget build(BuildContext context) => StoreConnector<AppState, _Vm>(
         debug: this,
         vm: () => _Factory(this),
+        onInit: (store) async => store.dispatchAsync(
+          RetrieveBme280MeasurementsAction(),
+        ),
         builder: (context, vm) => HomePage(
           isWaiting: vm.isWaiting,
         ),
