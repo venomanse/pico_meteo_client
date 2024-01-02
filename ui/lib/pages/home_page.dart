@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ]),
                       )
-                      .toList(),
+                      .toList(growable: false),
                   lineTouchData: LineTouchData(
                     handleBuiltInTouches: false,
                     touchCallback: (event, response) {
@@ -136,19 +136,21 @@ class _HomePageState extends State<HomePage> {
                             )
                             .toList(),
                     touchTooltipData: LineTouchTooltipData(
-                      tooltipBgColor: Colors.pink,
-                      tooltipRoundedRadius: 12,
+                      tooltipPadding: const EdgeInsets.all(4),
+                      tooltipBgColor: Colors.pink.withOpacity(0.5),
+                      tooltipRoundedRadius: 6,
                       getTooltipItems: (lineBarsSpot) => lineBarsSpot
                           .map(
                             (lineBarSpot) => LineTooltipItem(
-                              lineBarSpot.y.toInt().toString(),
+                              '${lineBarSpot.y.toStringAsFixed(2)} °C'
+                              '\n${lineBarSpot.x.toStringAsFixed(2)}',
                               const TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
                               ),
                             ),
                           )
-                          .toList(),
+                          .toList(growable: false),
                     ),
                   ),
                   lineBarsData: lineBarsData,
@@ -177,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                   borderData: FlBorderData(
                     show: true,
                     border: Border.all(
-                      color: Colors.brown,
+                      color: Colors.brown.withOpacity(0.2),
                     ),
                   ),
                 ),
