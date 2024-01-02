@@ -6,6 +6,8 @@ import 'package:storage/key_value_storage.dart';
 
 import 'environment.dart';
 import 'redux/app_state.dart';
+import 'redux/services/auth/auth.dart';
+import 'redux/services/auth/auth_driver.dart';
 import 'redux/services/connectivity/connectivity.dart';
 import 'redux/services/connectivity/connectivity_driver.dart';
 
@@ -23,14 +25,19 @@ Future<void> initLocator(Store<AppState> store, Environment env) async {
   final connectivity = ConnectivityService(
     driver: ConnectivityDriver(store: store),
   );
+  _locator.registerSingleton(connectivity);
+  await connectivity.start();
 
   final pocketBase = PocketBase(env.baseUrl);
-  final usersApi = UsersApi(
-    pocketBase: pocketBase,
-  );
-
+  // Users API
+  final usersApi = UsersApi(pocketBase: pocketBase);
   _locator.registerSingleton(usersApi);
 
-  await connectivity.start();
-  _locator.registerSingleton(connectivity);
+  // Auth Service
+  final authService = AuthService(
+    driver: AuthDriver(store: store),
+    pocketBase: pocketBase,
+  );
+  _locator.registerSingleton(authService);
+  await authService.start();
 }

@@ -1,30 +1,38 @@
+import 'package:models/user.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 import 'requests/create_user_request.dart';
 import 'requests/log_in_with_email_request.dart';
 
+typedef OnChange = void Function(Object user);
+
 final class UsersApi {
-  const UsersApi({required this.pocketBase});
+  UsersApi({
+    required PocketBase pocketBase,
+  }) : _pocketBase = pocketBase;
 
-  final PocketBase pocketBase;
+  final PocketBase _pocketBase;
 
-  RecordService get users => pocketBase.collection('users');
+  RecordService get users => _pocketBase.collection('users');
 
-  Future<void> createUser({
-    required CreateUserRequest request,
-  }) async {
+  Future<User> createUser({required CreateUserRequest request}) async {
     final body = request.toJson();
-    await users.create(body: body);
+    final result = await users.create(body: body);
 
     await users.requestVerification(request.email);
+    final json = result.toJson();
+
+    return User.fromJson(json);
   }
 
-  Future<void> logIn({
-    required LogInWithEmailRequest request,
-  }) async {
-    await users.authWithPassword(
+  Future<User> logIn({required LogInWithEmailRequest request}) async {
+    final result = await users.authWithPassword(
       request.email,
       request.password,
     );
+
+    final json = result.record!.toJson();
+
+    return User.fromJson(json);
   }
 }

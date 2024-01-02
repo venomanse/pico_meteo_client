@@ -1,5 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:logging/logging.dart';
+import 'package:pocketbase/pocketbase.dart';
+
 import 'app_state.dart';
 import 'models/localized_message.dart';
 
@@ -72,6 +74,15 @@ class _MyWrapError extends WrapError<AppState> {
           cause: message.title,
         );
       }
+    }
+
+    if (error is ClientException) {
+      final message = error.response['message'] as String?;
+
+      return UserException(
+        '${error.statusCode}',
+        cause: message,
+      );
     }
 
     if (error is UserException) {
