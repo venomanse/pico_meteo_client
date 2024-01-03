@@ -18,9 +18,13 @@ final class Bme280MeasurementsApi {
   /// Create a new user with email and password and send a verification email
   Future<Bme280Measurement> create({
     required NewBme280MeasurementRequest request,
+    Map<String, String>? headers,
   }) async {
     final body = request.toJson();
-    final result = await collection.create(body: body);
+    final result = await collection.create(
+      body: body,
+      headers: headers ?? const {},
+    );
 
     final json = result.toJson();
 

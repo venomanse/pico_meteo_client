@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:localization/localization.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,6 +31,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final lineBarsData = [
       LineChartBarData(
+        shadow: Shadow(
+          blurRadius: 3,
+          color: Colors.black.withOpacity(0.5),
+          offset: const Offset(2, 2),
+        ),
         showingIndicators: showingTooltipOnSpots,
         spots: allSpots,
         isCurved: true,
@@ -39,22 +43,22 @@ class _HomePageState extends State<HomePage> {
           show: true,
           gradient: LinearGradient(
             colors: [
-              Colors.red.withOpacity(0.8),
-              Colors.blue.withOpacity(0.8),
+              Colors.deepOrange.withOpacity(0.8),
+              Colors.blueAccent.withOpacity(0.8),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         dotData: const FlDotData(show: false),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
-            Colors.red.withOpacity(0.8),
-            Colors.blue.withOpacity(0.8),
+            Colors.deepOrange,
+            Colors.deepPurpleAccent,
           ],
-          stops: const [0.1, 0.9],
-          // begin: Alignment.topCenter,
-          // end: Alignment.bottomCenter,
+          stops: [0.1, 0.9],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
     ];
@@ -62,9 +66,6 @@ class _HomePageState extends State<HomePage> {
     final tooltipsOnBar = lineBarsData[0];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.current.home),
-      ),
       body: Column(
         children: [
           TableCalendar(
@@ -126,8 +127,8 @@ class _HomePageState extends State<HomePage> {
                                   getDotPainter:
                                       (spot, percent, barData, index) =>
                                           FlDotCirclePainter(
-                                    radius: 8,
-                                    color: Colors.pink.withOpacity(0.5),
+                                    radius: 6,
+                                    color: Colors.grey.withOpacity(0.5),
                                     strokeWidth: 2,
                                     strokeColor: Colors.black,
                                   ),
@@ -137,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                             .toList(),
                     touchTooltipData: LineTouchTooltipData(
                       tooltipPadding: const EdgeInsets.all(4),
-                      tooltipBgColor: Colors.pink.withOpacity(0.5),
+                      tooltipBgColor: Colors.deepPurpleAccent.withOpacity(0.5),
                       tooltipRoundedRadius: 6,
                       getTooltipItems: (lineBarsSpot) => lineBarsSpot
                           .map(
@@ -158,22 +159,15 @@ class _HomePageState extends State<HomePage> {
                   maxY: 40,
                   titlesData: const FlTitlesData(
                     leftTitles: AxisTitles(
-                      axisNameWidget: Text('Temperature'),
+                      axisNameWidget: Text('Temperature (°C)'),
                       axisNameSize: 24,
-                      sideTitles: SideTitles(
-                        reservedSize: 0,
-                      ),
                     ),
                     topTitles: AxisTitles(
                       axisNameWidget: Text(
-                        'Time',
+                        'Time (h)',
                         textAlign: TextAlign.left,
                       ),
                       axisNameSize: 24,
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 0,
-                      ),
                     ),
                   ),
                   borderData: FlBorderData(

@@ -40,6 +40,10 @@
 			"name": "doc",
 			"path": "doc"
 		},
+		{
+			"name": "sender",
+			"path": "sender"
+		}
 	],
 	"settings": {
 		"codeTemplateTool.templatesPath": "{workspace}/common",
