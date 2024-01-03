@@ -2,9 +2,9 @@ FROM dart:stable as build
 
 WORKDIR /app
 
-COPY ../http_client /app/http_client
-COPY ../models /app/models
-COPY ../sender /app/sender
+COPY http_client /app/http_client
+COPY models /app/models
+COPY sender /app/sender
 
 # Copy pubspec.* files to the container.
 WORKDIR /app/sender
