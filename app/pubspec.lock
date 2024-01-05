@@ -577,6 +577,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  pro_pretty_logging:
+    dependency: "direct main"
+    description:
+      name: pro_pretty_logging
+      sha256: f2161c1125d70819291d75d22ec8d9f5c483f5379b6a12ce15bdeeee92549a91
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   pro_validator:
     dependency: "direct main"
     description:
@@ -673,13 +681,6 @@ packages:
     dependency: "direct main"
     description:
       path: "../ui"
-      relative: true
-    source: path
-    version: "1.0.0"
-  utils:
-    dependency: "direct main"
-    description:
-      path: "../utils"
       relative: true
     source: path
     version: "1.0.0"

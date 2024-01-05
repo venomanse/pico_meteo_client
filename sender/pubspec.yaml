@@ -13,6 +13,7 @@ dependencies:
     path: ../http_client
   logging: ^1.2.0
   pocketbase: ^0.17.0
+  pro_pretty_logging: ^1.0.1
 
 dev_dependencies:
   mocktail: ^1.0.0

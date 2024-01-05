@@ -8,6 +8,7 @@ import 'package:http_client/bme280_measurements.dart';
 import 'package:http_client/requests/new_bme280_measurement_request.dart';
 import 'package:logging/logging.dart';
 import 'package:pocketbase/pocketbase.dart';
+import 'package:pro_pretty_logging/pro_pretty_logging.dart';
 
 Timer? _timer;
 DateTime? _lastExecutionTime;
@@ -16,6 +17,8 @@ PocketBase? _pocketBase;
 final _logger = Logger('Sender');
 
 Future<HttpServer> run(Handler handler, InternetAddress ip, int port) {
+  prettyLogging(enable: true);
+
   _lastExecutionTime = null;
   _pocketBase = null;
 

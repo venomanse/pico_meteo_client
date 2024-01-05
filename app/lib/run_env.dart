@@ -8,7 +8,7 @@ import 'package:business/service_locator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:utils/setup_logger.dart';
+import 'package:pro_pretty_logging/pro_pretty_logging.dart';
 import 'package:window_size/window_size.dart';
 
 import 'app.dart';
@@ -28,8 +28,8 @@ Future<void> runEnv(Environment env) async {
     ),
   );
 
-  setupRootLogger(
-    isDebugMode: kDebugMode,
+  prettyLogging(
+    enable: kDebugMode,
     ignoredLoggers: ['GoRouter'],
   );
 
