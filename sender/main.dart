@@ -6,11 +6,14 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_client/bme280_measurements.dart';
 import 'package:http_client/requests/new_bme280_measurement_request.dart';
+import 'package:logging/logging.dart';
 import 'package:pocketbase/pocketbase.dart';
 
 Timer? _timer;
 DateTime? _lastExecutionTime;
 PocketBase? _pocketBase;
+
+final _logger = Logger('Sender');
 
 Future<HttpServer> run(Handler handler, InternetAddress ip, int port) {
   _lastExecutionTime = null;
@@ -53,9 +56,10 @@ Future<void> _sendSensorData() async {
     final humidity = json['humidity'] as double;
     final pressure = json['pressure'] as double;
 
-    print('${DateTime.now().toIso8601String()} - temperature: $temperature '
-        'humidity: $humidity '
-        'pressure: $pressure ');
+    _logger
+        .info('${DateTime.now().toIso8601String()} - temperature: $temperature '
+            'humidity: $humidity '
+            'pressure: $pressure ');
 
     final request = NewBme280MeasurementRequest(
       uuid: 'kitchen',

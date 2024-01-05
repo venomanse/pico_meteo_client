@@ -1,220 +1,29 @@
-import 'dart:math';
-
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 
-class HomePage extends StatefulWidget {
+import '../calendar/week_calendar.dart';
+import '../charts/base_line_chart.dart';
+
+class HomePage extends StatelessWidget {
   const HomePage({
     required this.isWaiting,
+    required this.calendar,
+    required this.items,
     super.key,
   });
 
   final bool isWaiting;
+  final WeekCalendarVm calendar;
+  final List<MeasurementVm> items;
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  List<int> showingTooltipOnSpots = [];
-
-  List<FlSpot> allSpots = List.generate(
-    24,
-    (index) => FlSpot(
-      index.toDouble(),
-      Random().nextDouble() * 12,
-    ),
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    final lineBarsData = [
-      LineChartBarData(
-        shadow: Shadow(
-          blurRadius: 3,
-          color: Colors.black.withOpacity(0.5),
-          offset: const Offset(2, 2),
-        ),
-        showingIndicators: showingTooltipOnSpots,
-        spots: allSpots,
-        isCurved: true,
-        belowBarData: BarAreaData(
-          show: true,
-          gradient: LinearGradient(
-            colors: [
-              Colors.deepOrange.withOpacity(0.8),
-              Colors.blueAccent.withOpacity(0.8),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        dotData: const FlDotData(show: false),
-        gradient: const LinearGradient(
-          colors: [
-            Colors.deepOrange,
-            Colors.deepPurpleAccent,
+  Widget build(BuildContext context) => Scaffold(
+        body: Column(
+          children: [
+            WeekCalendar(vm: calendar),
+            Expanded(
+              child: BaseLineChart(items: items),
+            ),
           ],
-          stops: [0.1, 0.9],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
         ),
-      ),
-    ];
-
-    final tooltipsOnBar = lineBarsData[0];
-
-    return Scaffold(
-      body: Column(
-        children: [
-          TableCalendar(
-            firstDay: DateTime.utc(2010, 10, 16),
-            lastDay: DateTime.now(),
-            focusedDay: DateTime.now(),
-            calendarFormat: CalendarFormat.week,
-            headerStyle: const HeaderStyle(
-              formatButtonVisible: false,
-              titleCentered: true,
-            ),
-          ),
-          Expanded(
-            child: LayoutBuilder(
-              builder: (context, constraints) => LineChart(
-                LineChartData(
-                  showingTooltipIndicators: showingTooltipOnSpots
-                      .map(
-                        (index) => ShowingTooltipIndicators([
-                          LineBarSpot(
-                            tooltipsOnBar,
-                            lineBarsData.indexOf(tooltipsOnBar),
-                            tooltipsOnBar.spots[index],
-                          ),
-                        ]),
-                      )
-                      .toList(growable: false),
-                  lineTouchData: LineTouchData(
-                    handleBuiltInTouches: false,
-                    touchCallback: (event, response) {
-                      if (response == null || response.lineBarSpots == null) {
-                        return;
-                      }
-
-                      if (event is FlTapUpEvent) {
-                        final spotIndex =
-                            response.lineBarSpots!.first.spotIndex;
-                        setState(() {
-                          if (showingTooltipOnSpots.contains(spotIndex)) {
-                            showingTooltipOnSpots.remove(spotIndex);
-                          } else {
-                            showingTooltipOnSpots.add(spotIndex);
-                          }
-                        });
-                      }
-                    },
-                    mouseCursorResolver: (event, response) {
-                      if (response == null || response.lineBarSpots == null) {
-                        return SystemMouseCursors.basic;
-                      }
-                      return SystemMouseCursors.click;
-                    },
-                    getTouchedSpotIndicator: (barData, spotIndexes) =>
-                        spotIndexes
-                            .map(
-                              (index) => TouchedSpotIndicatorData(
-                                FlLine(color: Colors.pink.withOpacity(0.5)),
-                                FlDotData(
-                                  getDotPainter:
-                                      (spot, percent, barData, index) =>
-                                          FlDotCirclePainter(
-                                    radius: 6,
-                                    color: Colors.grey.withOpacity(0.5),
-                                    strokeWidth: 2,
-                                    strokeColor: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                    touchTooltipData: LineTouchTooltipData(
-                      tooltipPadding: const EdgeInsets.all(4),
-                      tooltipBgColor: Colors.deepPurpleAccent.withOpacity(0.5),
-                      tooltipRoundedRadius: 6,
-                      getTooltipItems: (lineBarsSpot) => lineBarsSpot
-                          .map(
-                            (lineBarSpot) => LineTooltipItem(
-                              '${lineBarSpot.y.toStringAsFixed(2)} °C'
-                              '\n${lineBarSpot.x.toStringAsFixed(2)}',
-                              const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          )
-                          .toList(growable: false),
-                    ),
-                  ),
-                  lineBarsData: lineBarsData,
-                  minY: -40,
-                  maxY: 40,
-                  titlesData: const FlTitlesData(
-                    leftTitles: AxisTitles(
-                      axisNameWidget: Text('Temperature (°C)'),
-                      axisNameSize: 24,
-                    ),
-                    topTitles: AxisTitles(
-                      axisNameWidget: Text(
-                        'Time (h)',
-                        textAlign: TextAlign.left,
-                      ),
-                      axisNameSize: 24,
-                    ),
-                  ),
-                  borderData: FlBorderData(
-                    show: true,
-                    border: Border.all(
-                      color: Colors.brown.withOpacity(0.2),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Color lerpGradient(List<Color> colors, List<double> stops, double t) {
-    var stopsT = stops;
-    if (colors.isEmpty) {
-      throw ArgumentError('"colors" is empty.');
-    } else if (colors.length == 1) {
-      return colors[0];
-    }
-
-    if (stopsT.length != colors.length) {
-      stopsT = [];
-
-      /// provided gradientColorStops is invalid and we calculate it here
-      colors.asMap().forEach((index, color) {
-        final percent = 1.0 / (colors.length - 1);
-        stopsT.add(percent * index);
-      });
-    }
-
-    for (var s = 0; s < stopsT.length - 1; s++) {
-      final leftStop = stopsT[s];
-      final rightStop = stopsT[s + 1];
-      final leftColor = colors[s];
-      final rightColor = colors[s + 1];
-      if (t <= leftStop) {
-        return leftColor;
-      } else if (t < rightStop) {
-        final sectionT = (t - leftStop) / (rightStop - leftStop);
-        return Color.lerp(leftColor, rightColor, sectionT)!;
-      }
-    }
-    return colors.last;
-  }
+      );
 }

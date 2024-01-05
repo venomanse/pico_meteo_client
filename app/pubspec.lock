@@ -585,14 +585,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  retrofit:
-    dependency: transitive
-    description:
-      name: retrofit
-      sha256: "04ed77c82cadb655bb9357e8d0cb9da72ff704749a2d0cfe6540dd1f1f7ca4b9"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.3"
   simple_gesture_detector:
     dependency: transitive
     description:

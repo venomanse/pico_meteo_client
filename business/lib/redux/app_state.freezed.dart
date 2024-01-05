@@ -24,6 +24,8 @@ mixin _$AppState {
   SessionState get session => throw _privateConstructorUsedError;
   Bme280MeasurementsState get bme280Measurements =>
       throw _privateConstructorUsedError;
+  Bme280MeasurementsViewState get bme280MeasurementsView =>
+      throw _privateConstructorUsedError;
   Wait get wait => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -44,6 +46,7 @@ abstract class $AppStateCopyWith<$Res> {
       ResetPasswordState resetPassword,
       SessionState session,
       Bme280MeasurementsState bme280Measurements,
+      Bme280MeasurementsViewState bme280MeasurementsView,
       Wait wait});
 
   $ConnectivityStateCopyWith<$Res> get connectivity;
@@ -53,6 +56,7 @@ abstract class $AppStateCopyWith<$Res> {
   $ResetPasswordStateCopyWith<$Res> get resetPassword;
   $SessionStateCopyWith<$Res> get session;
   $Bme280MeasurementsStateCopyWith<$Res> get bme280Measurements;
+  $Bme280MeasurementsViewStateCopyWith<$Res> get bme280MeasurementsView;
 }
 
 /// @nodoc
@@ -75,6 +79,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? resetPassword = null,
     Object? session = null,
     Object? bme280Measurements = null,
+    Object? bme280MeasurementsView = null,
     Object? wait = null,
   }) {
     return _then(_value.copyWith(
@@ -106,6 +111,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.bme280Measurements
           : bme280Measurements // ignore: cast_nullable_to_non_nullable
               as Bme280MeasurementsState,
+      bme280MeasurementsView: null == bme280MeasurementsView
+          ? _value.bme280MeasurementsView
+          : bme280MeasurementsView // ignore: cast_nullable_to_non_nullable
+              as Bme280MeasurementsViewState,
       wait: null == wait
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -169,6 +178,15 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       return _then(_value.copyWith(bme280Measurements: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $Bme280MeasurementsViewStateCopyWith<$Res> get bme280MeasurementsView {
+    return $Bme280MeasurementsViewStateCopyWith<$Res>(
+        _value.bme280MeasurementsView, (value) {
+      return _then(_value.copyWith(bme280MeasurementsView: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -187,6 +205,7 @@ abstract class _$$AppStateImplCopyWith<$Res>
       ResetPasswordState resetPassword,
       SessionState session,
       Bme280MeasurementsState bme280Measurements,
+      Bme280MeasurementsViewState bme280MeasurementsView,
       Wait wait});
 
   @override
@@ -203,6 +222,8 @@ abstract class _$$AppStateImplCopyWith<$Res>
   $SessionStateCopyWith<$Res> get session;
   @override
   $Bme280MeasurementsStateCopyWith<$Res> get bme280Measurements;
+  @override
+  $Bme280MeasurementsViewStateCopyWith<$Res> get bme280MeasurementsView;
 }
 
 /// @nodoc
@@ -223,6 +244,7 @@ class __$$AppStateImplCopyWithImpl<$Res>
     Object? resetPassword = null,
     Object? session = null,
     Object? bme280Measurements = null,
+    Object? bme280MeasurementsView = null,
     Object? wait = null,
   }) {
     return _then(_$AppStateImpl(
@@ -254,6 +276,10 @@ class __$$AppStateImplCopyWithImpl<$Res>
           ? _value.bme280Measurements
           : bme280Measurements // ignore: cast_nullable_to_non_nullable
               as Bme280MeasurementsState,
+      bme280MeasurementsView: null == bme280MeasurementsView
+          ? _value.bme280MeasurementsView
+          : bme280MeasurementsView // ignore: cast_nullable_to_non_nullable
+              as Bme280MeasurementsViewState,
       wait: null == wait
           ? _value.wait
           : wait // ignore: cast_nullable_to_non_nullable
@@ -273,6 +299,7 @@ class _$AppStateImpl implements _AppState {
       required this.resetPassword,
       required this.session,
       required this.bme280Measurements,
+      required this.bme280MeasurementsView,
       required this.wait});
 
   @override
@@ -290,11 +317,13 @@ class _$AppStateImpl implements _AppState {
   @override
   final Bme280MeasurementsState bme280Measurements;
   @override
+  final Bme280MeasurementsViewState bme280MeasurementsView;
+  @override
   final Wait wait;
 
   @override
   String toString() {
-    return 'AppState(connectivity: $connectivity, logIn: $logIn, registration: $registration, forgotPassword: $forgotPassword, resetPassword: $resetPassword, session: $session, bme280Measurements: $bme280Measurements, wait: $wait)';
+    return 'AppState(connectivity: $connectivity, logIn: $logIn, registration: $registration, forgotPassword: $forgotPassword, resetPassword: $resetPassword, session: $session, bme280Measurements: $bme280Measurements, bme280MeasurementsView: $bme280MeasurementsView, wait: $wait)';
   }
 
   @override
@@ -314,6 +343,8 @@ class _$AppStateImpl implements _AppState {
             (identical(other.session, session) || other.session == session) &&
             (identical(other.bme280Measurements, bme280Measurements) ||
                 other.bme280Measurements == bme280Measurements) &&
+            (identical(other.bme280MeasurementsView, bme280MeasurementsView) ||
+                other.bme280MeasurementsView == bme280MeasurementsView) &&
             (identical(other.wait, wait) || other.wait == wait));
   }
 
@@ -327,6 +358,7 @@ class _$AppStateImpl implements _AppState {
       resetPassword,
       session,
       bme280Measurements,
+      bme280MeasurementsView,
       wait);
 
   @JsonKey(ignore: true)
@@ -345,6 +377,7 @@ abstract class _AppState implements AppState {
       required final ResetPasswordState resetPassword,
       required final SessionState session,
       required final Bme280MeasurementsState bme280Measurements,
+      required final Bme280MeasurementsViewState bme280MeasurementsView,
       required final Wait wait}) = _$AppStateImpl;
 
   @override
@@ -361,6 +394,8 @@ abstract class _AppState implements AppState {
   SessionState get session;
   @override
   Bme280MeasurementsState get bme280Measurements;
+  @override
+  Bme280MeasurementsViewState get bme280MeasurementsView;
   @override
   Wait get wait;
   @override
