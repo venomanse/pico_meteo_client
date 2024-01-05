@@ -17,7 +17,7 @@ PocketBase? _pocketBase;
 final _logger = Logger('Sender');
 
 Future<HttpServer> run(Handler handler, InternetAddress ip, int port) {
-  prettyLogging(enable: true);
+  prettyLogging(enable: true, type: PrettyOutputType.print);
 
   _lastExecutionTime = null;
   _pocketBase = null;
