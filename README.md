@@ -16,7 +16,7 @@ BASE_URL="your_pocket_base_url"
 ```
 
 ## Screenshots
+<img src="imgs/1.png" width="30%"></img>
+<img src="imgs/2.png" width="30%"></img>
+<img src="imgs/3.png" width="30%"></img>
 
-![Temperature](imgs/1.png)
-![Humidity](imgs/2.png)
-![Pressure](imgs/3.png)
