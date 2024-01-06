@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 class MeasurementVm extends Equatable {
   const MeasurementVm({
@@ -175,13 +176,13 @@ class _BaseLineChartState extends State<BaseLineChart> {
         maxY: 60,
         minY: -40,
         titlesData: FlTitlesData(
-          leftTitles: const AxisTitles(
-            axisNameWidget: Text('Temperature (°C)'),
+          leftTitles: AxisTitles(
+            axisNameWidget: Text(S.current.temperatureC),
             axisNameSize: 24,
           ),
-          topTitles: const AxisTitles(
+          topTitles: AxisTitles(
             axisNameWidget: Text(
-              'Time (h)',
+              S.current.timeH,
               textAlign: TextAlign.left,
             ),
             axisNameSize: 24,

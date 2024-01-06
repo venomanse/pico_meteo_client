@@ -17,13 +17,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Column(
-          children: [
-            WeekCalendar(vm: calendar),
-            Expanded(
-              child: BaseLineChart(items: items),
-            ),
-          ],
+        body: SafeArea(
+          child: Column(
+            children: [
+              WeekCalendar(vm: calendar),
+              Expanded(
+                child: BaseLineChart(items: items),
+              ),
+            ],
+          ),
         ),
       );
 }

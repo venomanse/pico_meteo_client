@@ -20,5 +20,8 @@
     "mustContainAtLeastOneUppercase": "Must contain at least one uppercase",
     "passwordsDoNotMatch": "Passwords do not match",
     "requiredField": "Required field",
-    "home": "Home"
+    "home": "Home",
+    "temperatureC": "Temperature °C",
+    "timeH": "Time h"
+
 }

@@ -52,8 +52,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "temperatureC": MessageLookupByLibrary.simpleMessage("Temperature °C"),
         "thisFieldIsRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
+        "timeH": MessageLookupByLibrary.simpleMessage("Time h"),
         "title": MessageLookupByLibrary.simpleMessage("title")
       };
 }

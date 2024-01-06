@@ -269,6 +269,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Temperature °C`
+  String get temperatureC {
+    return Intl.message(
+      'Temperature °C',
+      name: 'temperatureC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time h`
+  String get timeH {
+    return Intl.message(
+      'Time h',
+      name: 'timeH',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
