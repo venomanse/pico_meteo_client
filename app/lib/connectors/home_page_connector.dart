@@ -2,13 +2,17 @@ import 'package:async_redux/async_redux.dart';
 import 'package:business/redux/app_state.dart';
 import 'package:business/redux/bme280_measurements/bme280_measurements_selectors.dart';
 import 'package:business/redux/bme280_measurements_view/actions/retrieve_bme280_measurements_action.dart';
+import 'package:business/redux/bme280_measurements_view/actions/set_measurement_type_action.dart';
 import 'package:business/redux/bme280_measurements_view/bme280_measurements_view_selectors.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/calendar/week_calendar.dart';
-import 'package:ui/charts/base_line_chart.dart';
+import 'package:ui/charts/measurement_chart.dart';
+import 'package:ui/models/enum/measurement_type.dart';
 import 'package:ui/models/value_changed.dart';
 import 'package:ui/pages/home_page.dart';
+
+import '../mappers/measurement_type.dart';
 
 class HomePageConnector extends StatelessWidget {
   const HomePageConnector({
@@ -25,6 +29,7 @@ class HomePageConnector extends StatelessWidget {
         builder: (context, vm) => HomePage(
           isWaiting: vm.isWaiting,
           calendar: vm.calendar,
+          type: vm.type,
           items: vm.items,
         ),
       );
@@ -41,14 +46,18 @@ class _Factory extends BaseFactory<HomePageConnector, _Vm> {
     final firstDay = selectBme280MeasurementsViewFirstDay(state);
     final focusedDay = selectBme280MeasurementsViewFocusedDay(state);
     final sortedView = selectBme280MeasurementsViewSortedView(state);
-
+    final type = selectBme280MeasurementsViewMeasurementType(state).asView();
     final items = sortedView.map(
       (id) {
         final item = selectBme280MeasurementsById(state, id: id);
 
         return MeasurementVm(
           time: item.created.toLocal(),
-          value: item.temperature,
+          value: switch (type) {
+            MeasurementType.temperature => item.temperature,
+            MeasurementType.humidity => item.humidity,
+            MeasurementType.pressure => item.pressure,
+          },
         );
       },
     ).toList(growable: false);
@@ -68,6 +77,12 @@ class _Factory extends BaseFactory<HomePageConnector, _Vm> {
           },
         ),
       ),
+      type: ValueChangedVm(
+        value: type,
+        onChanged: (value) => dispatchSync(
+          SetMeasurementTypeAction(type: value.asModel()),
+        ),
+      ),
       items: items,
     );
   }
@@ -78,13 +93,15 @@ class _Vm extends Vm with EquatableMixin {
   _Vm({
     required this.isWaiting,
     required this.calendar,
+    required this.type,
     required this.items,
   });
 
   final bool isWaiting;
   final WeekCalendarVm calendar;
+  final ValueChangedVm<MeasurementType> type;
   final List<MeasurementVm> items;
 
   @override
-  List<Object?> get props => [isWaiting, calendar, items];
+  List<Object?> get props => [isWaiting, calendar, type, items];
 }

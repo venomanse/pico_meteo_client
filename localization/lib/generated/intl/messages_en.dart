@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "backToLogIn": MessageLookupByLibrary.simpleMessage("Back to logIn"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "celsius": MessageLookupByLibrary.simpleMessage("°C"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "couldNotConnectToInternet": MessageLookupByLibrary.simpleMessage(
@@ -36,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password ?"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "humidity": MessageLookupByLibrary.simpleMessage("Humidity"),
+        "humidityInPercent": MessageLookupByLibrary.simpleMessage("%"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "minimumLengthSymbols": m0,
@@ -49,13 +52,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "pleaseCheckYorNetworkSettings": MessageLookupByLibrary.simpleMessage(
             "Please check yor network settings."),
+        "pressure": MessageLookupByLibrary.simpleMessage("Pressure"),
+        "pressureInHPa": MessageLookupByLibrary.simpleMessage("hPa"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "requiredField": MessageLookupByLibrary.simpleMessage("Required field"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset password"),
-        "temperatureC": MessageLookupByLibrary.simpleMessage("Temperature °C"),
+        "temperature": MessageLookupByLibrary.simpleMessage("Temperature"),
         "thisFieldIsRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
-        "timeH": MessageLookupByLibrary.simpleMessage("Time h"),
+        "time": MessageLookupByLibrary.simpleMessage("Time"),
         "title": MessageLookupByLibrary.simpleMessage("title")
       };
 }

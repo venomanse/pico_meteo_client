@@ -21,7 +21,11 @@
     "passwordsDoNotMatch": "Passwords do not match",
     "requiredField": "Required field",
     "home": "Home",
-    "temperatureC": "Temperature °C",
-    "timeH": "Time h"
-
+    "temperature": "Temperature",
+    "celsius": "°C",
+    "time": "Time",
+    "humidity": "Humidity",
+    "humidityInPercent": "%",
+    "pressure": "Pressure",
+    "pressureInHPa": "hPa"
 }

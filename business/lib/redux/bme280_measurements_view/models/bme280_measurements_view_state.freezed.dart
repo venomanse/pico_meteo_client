@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Bme280MeasurementsViewState {
   DateTime? get selectedDay => throw _privateConstructorUsedError;
+  MeasurementTypeEnum get measurementType => throw _privateConstructorUsedError;
   IList<String> get sortedView => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +33,10 @@ abstract class $Bme280MeasurementsViewStateCopyWith<$Res> {
       _$Bme280MeasurementsViewStateCopyWithImpl<$Res,
           Bme280MeasurementsViewState>;
   @useResult
-  $Res call({DateTime? selectedDay, IList<String> sortedView});
+  $Res call(
+      {DateTime? selectedDay,
+      MeasurementTypeEnum measurementType,
+      IList<String> sortedView});
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ class _$Bme280MeasurementsViewStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? selectedDay = freezed,
+    Object? measurementType = null,
     Object? sortedView = null,
   }) {
     return _then(_value.copyWith(
@@ -57,6 +62,10 @@ class _$Bme280MeasurementsViewStateCopyWithImpl<$Res,
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      measurementType: null == measurementType
+          ? _value.measurementType
+          : measurementType // ignore: cast_nullable_to_non_nullable
+              as MeasurementTypeEnum,
       sortedView: null == sortedView
           ? _value.sortedView
           : sortedView // ignore: cast_nullable_to_non_nullable
@@ -74,7 +83,10 @@ abstract class _$$Bme280MeasurementsViewStateImplCopyWith<$Res>
       __$$Bme280MeasurementsViewStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime? selectedDay, IList<String> sortedView});
+  $Res call(
+      {DateTime? selectedDay,
+      MeasurementTypeEnum measurementType,
+      IList<String> sortedView});
 }
 
 /// @nodoc
@@ -91,6 +103,7 @@ class __$$Bme280MeasurementsViewStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedDay = freezed,
+    Object? measurementType = null,
     Object? sortedView = null,
   }) {
     return _then(_$Bme280MeasurementsViewStateImpl(
@@ -98,6 +111,10 @@ class __$$Bme280MeasurementsViewStateImplCopyWithImpl<$Res>
           ? _value.selectedDay
           : selectedDay // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      measurementType: null == measurementType
+          ? _value.measurementType
+          : measurementType // ignore: cast_nullable_to_non_nullable
+              as MeasurementTypeEnum,
       sortedView: null == sortedView
           ? _value.sortedView
           : sortedView // ignore: cast_nullable_to_non_nullable
@@ -111,17 +128,22 @@ class __$$Bme280MeasurementsViewStateImplCopyWithImpl<$Res>
 class _$Bme280MeasurementsViewStateImpl
     implements _Bme280MeasurementsViewState {
   const _$Bme280MeasurementsViewStateImpl(
-      {this.selectedDay, this.sortedView = const IListConst<String>([])});
+      {this.selectedDay,
+      this.measurementType = MeasurementTypeEnum.temperature,
+      this.sortedView = const IListConst<String>([])});
 
   @override
   final DateTime? selectedDay;
+  @override
+  @JsonKey()
+  final MeasurementTypeEnum measurementType;
   @override
   @JsonKey()
   final IList<String> sortedView;
 
   @override
   String toString() {
-    return 'Bme280MeasurementsViewState(selectedDay: $selectedDay, sortedView: $sortedView)';
+    return 'Bme280MeasurementsViewState(selectedDay: $selectedDay, measurementType: $measurementType, sortedView: $sortedView)';
   }
 
   @override
@@ -131,12 +153,14 @@ class _$Bme280MeasurementsViewStateImpl
             other is _$Bme280MeasurementsViewStateImpl &&
             (identical(other.selectedDay, selectedDay) ||
                 other.selectedDay == selectedDay) &&
+            (identical(other.measurementType, measurementType) ||
+                other.measurementType == measurementType) &&
             const DeepCollectionEquality()
                 .equals(other.sortedView, sortedView));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedDay,
+  int get hashCode => Object.hash(runtimeType, selectedDay, measurementType,
       const DeepCollectionEquality().hash(sortedView));
 
   @JsonKey(ignore: true)
@@ -151,10 +175,13 @@ abstract class _Bme280MeasurementsViewState
     implements Bme280MeasurementsViewState {
   const factory _Bme280MeasurementsViewState(
       {final DateTime? selectedDay,
+      final MeasurementTypeEnum measurementType,
       final IList<String> sortedView}) = _$Bme280MeasurementsViewStateImpl;
 
   @override
   DateTime? get selectedDay;
+  @override
+  MeasurementTypeEnum get measurementType;
   @override
   IList<String> get sortedView;
   @override

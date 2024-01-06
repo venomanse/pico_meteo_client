@@ -270,21 +270,71 @@ class S {
     );
   }
 
-  /// `Temperature °C`
-  String get temperatureC {
+  /// `Temperature`
+  String get temperature {
     return Intl.message(
-      'Temperature °C',
-      name: 'temperatureC',
+      'Temperature',
+      name: 'temperature',
       desc: '',
       args: [],
     );
   }
 
-  /// `Time h`
-  String get timeH {
+  /// `°C`
+  String get celsius {
     return Intl.message(
-      'Time h',
-      name: 'timeH',
+      '°C',
+      name: 'celsius',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time`
+  String get time {
+    return Intl.message(
+      'Time',
+      name: 'time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Humidity`
+  String get humidity {
+    return Intl.message(
+      'Humidity',
+      name: 'humidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `%`
+  String get humidityInPercent {
+    return Intl.message(
+      '%',
+      name: 'humidityInPercent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pressure`
+  String get pressure {
+    return Intl.message(
+      'Pressure',
+      name: 'pressure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hPa`
+  String get pressureInHPa {
+    return Intl.message(
+      'hPa',
+      name: 'pressureInHPa',
       desc: '',
       args: [],
     );

@@ -3,6 +3,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 
+import '../models/enum/measurement_type.dart';
+
 class MeasurementVm extends Equatable {
   const MeasurementVm({
     required this.value,
@@ -19,19 +21,21 @@ class MeasurementVm extends Equatable {
       ];
 }
 
-class BaseLineChart extends StatefulWidget {
-  const BaseLineChart({
+class MeasurementChart extends StatefulWidget {
+  const MeasurementChart({
+    required this.type,
     required this.items,
     super.key,
   });
 
+  final MeasurementType type;
   final List<MeasurementVm> items;
 
   @override
-  State<BaseLineChart> createState() => _BaseLineChartState();
+  State<MeasurementChart> createState() => _MeasurementChartState();
 }
 
-class _BaseLineChartState extends State<BaseLineChart> {
+class _MeasurementChartState extends State<MeasurementChart> {
   List<int> showingTooltipOnSpots = [];
 
   List<FlSpot> get allSpots {
@@ -161,7 +165,8 @@ class _BaseLineChartState extends State<BaseLineChart> {
             getTooltipItems: (lineBarsSpot) => lineBarsSpot
                 .map(
                   (lineBarSpot) => LineTooltipItem(
-                    '${lineBarSpot.y.toStringAsFixed(2)} °C'
+                    '${lineBarSpot.y.toStringAsFixed(2)} '
+                    '${widget.type.yAxisLabel}'
                     '\n${_secondsToTimeString(lineBarSpot.x.toInt())}',
                     const TextStyle(
                       color: Colors.white,
@@ -173,27 +178,29 @@ class _BaseLineChartState extends State<BaseLineChart> {
           ),
         ),
         lineBarsData: lineBarsData,
-        maxY: 60,
-        minY: -40,
+        maxY: widget.type.maxY,
+        minY: widget.type.minY,
         titlesData: FlTitlesData(
           leftTitles: AxisTitles(
-            axisNameWidget: Text(S.current.temperatureC),
-            axisNameSize: 24,
+            axisNameWidget: Text(widget.type.yAxisLabel),
+            axisNameSize: 28,
           ),
           topTitles: AxisTitles(
             axisNameWidget: Text(
-              S.current.timeH,
+              widget.type.xAxisLabel,
               textAlign: TextAlign.left,
             ),
-            axisNameSize: 24,
+            axisNameSize: 28,
           ),
           rightTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
+              reservedSize: 40,
               getTitlesWidget: (value, meta) {
                 final temperature = value.toInt();
                 return Text(
                   '$temperature',
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
@@ -206,7 +213,7 @@ class _BaseLineChartState extends State<BaseLineChart> {
             drawBelowEverything: false,
             sideTitles: SideTitles(
               showTitles: true,
-              reservedSize: 24,
+              reservedSize: 28,
               interval: 3600 * 5,
               getTitlesWidget: (value, meta) => Text(
                 _secondsToTimeString(value.toInt()),
@@ -238,5 +245,42 @@ class _BaseLineChartState extends State<BaseLineChart> {
     final minutesString = (minutes < 10) ? '0$minutes' : '$minutes';
 
     return '$hoursString:$minutesString';
+  }
+}
+
+extension MeasurementTypeExtension on MeasurementType {
+  String get xAxisLabel => S.current.time;
+
+  String get yAxisLabel {
+    switch (this) {
+      case MeasurementType.temperature:
+        return S.current.celsius;
+      case MeasurementType.humidity:
+        return S.current.humidityInPercent;
+      case MeasurementType.pressure:
+        return S.current.pressureInHPa;
+    }
+  }
+
+  double get maxY {
+    switch (this) {
+      case MeasurementType.temperature:
+        return 60;
+      case MeasurementType.humidity:
+        return 100;
+      case MeasurementType.pressure:
+        return 1100;
+    }
+  }
+
+  double get minY {
+    switch (this) {
+      case MeasurementType.temperature:
+        return -40;
+      case MeasurementType.humidity:
+        return 0;
+      case MeasurementType.pressure:
+        return 900;
+    }
   }
 }
