@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:localization/localization.dart';
 
 import '../models/enum/measurement_type.dart';
 
@@ -214,7 +213,7 @@ class _MeasurementChartState extends State<MeasurementChart> {
             sideTitles: SideTitles(
               showTitles: true,
               reservedSize: 28,
-              interval: 3600 * 5,
+              interval: 3600 * 8,
               getTitlesWidget: (value, meta) => Text(
                 _secondsToTimeString(value.toInt()),
                 style: const TextStyle(
@@ -245,42 +244,5 @@ class _MeasurementChartState extends State<MeasurementChart> {
     final minutesString = (minutes < 10) ? '0$minutes' : '$minutes';
 
     return '$hoursString:$minutesString';
-  }
-}
-
-extension MeasurementTypeExtension on MeasurementType {
-  String get xAxisLabel => S.current.time;
-
-  String get yAxisLabel {
-    switch (this) {
-      case MeasurementType.temperature:
-        return S.current.celsius;
-      case MeasurementType.humidity:
-        return S.current.humidityInPercent;
-      case MeasurementType.pressure:
-        return S.current.pressureInHPa;
-    }
-  }
-
-  double get maxY {
-    switch (this) {
-      case MeasurementType.temperature:
-        return 60;
-      case MeasurementType.humidity:
-        return 100;
-      case MeasurementType.pressure:
-        return 1100;
-    }
-  }
-
-  double get minY {
-    switch (this) {
-      case MeasurementType.temperature:
-        return -40;
-      case MeasurementType.humidity:
-        return 0;
-      case MeasurementType.pressure:
-        return 900;
-    }
   }
 }
