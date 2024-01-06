@@ -23,8 +23,8 @@ Future<void> runEnv(Environment env) async {
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
-      statusBarBrightness: Brightness.dark,
+      statusBarColor: Colors.black,
+      statusBarBrightness: Brightness.light,
     ),
   );
 

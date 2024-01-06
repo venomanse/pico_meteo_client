@@ -22,9 +22,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-        ),
         body: SafeArea(
           child: Column(
             children: [
