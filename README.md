@@ -4,7 +4,7 @@ Client for [Pico Meteo project](https://github.com/pro100andrey/pico_meteo).
 
 ## Modules UML
 
-![Image](doc/out/modules/**modules**.png)
+![Modules](doc/out/modules/modules.png)
 
 
 ## Dotenv
@@ -16,6 +16,7 @@ BASE_URL="your_pocket_base_url"
 ```
 
 ## Screenshots
-<img src="imgs/1.png" width="180">
-<img src="imgs/2.png" width="180">
-<img src="imgs/3.png" width="180">
+
+![Temperature](imgs/1.png)
+![Humidity](imgs/2.png)
+![Pressure](imgs/3.png)
