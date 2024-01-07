@@ -2,7 +2,7 @@ import 'package:business/redux/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ui/pages/splash_page.dart';
-import 'package:ui/snackbars/base_snackbart.dart';
+import 'package:ui/snack_bars/base_snack_bar.dart';
 
 import '../connectors/forgot_password_page_connector.dart';
 import '../connectors/home_page_connector.dart';
