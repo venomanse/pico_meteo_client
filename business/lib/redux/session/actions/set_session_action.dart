@@ -7,10 +7,12 @@ import '../models/session_state.dart';
 class SetSessionAction extends ReduxAction<AppState> {
   SetSessionAction({required this.user});
 
-  final User user;
+  final User? user;
 
   @override
   AppState reduce() => state.copyWith(
-        session: SessionStateAvailable(user: user),
+        session: user == null
+            ? const SessionStateIdle()
+            : SessionStateAvailable(user: user!),
       );
 }

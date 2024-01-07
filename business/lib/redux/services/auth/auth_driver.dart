@@ -16,5 +16,7 @@ class AuthDriver implements AuthServiceDriverInterface {
   }
 
   @override
-  void onLogout() {}
+  void onLogout() {
+    _store.dispatchSync(SetSessionAction(user: null));
+  }
 }

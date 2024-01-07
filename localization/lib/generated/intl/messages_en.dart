@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "humidityInPercent": MessageLookupByLibrary.simpleMessage("%"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Invalid email"),
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "minimumLengthSymbols": m0,
         "mustContainAtLeastOneLowercase": MessageLookupByLibrary.simpleMessage(
             "Must contain at least one lowercase"),

@@ -27,5 +27,6 @@
     "humidity": "Humidity",
     "humidityInPercent": "%",
     "pressure": "Pressure",
-    "pressureInHPa": "hPa"
+    "pressureInHPa": "hPa",
+    "logout": "Logout"
 }

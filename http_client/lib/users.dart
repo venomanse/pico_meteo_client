@@ -35,4 +35,9 @@ final class UsersApi {
 
     return User.fromJson(json);
   }
+
+  /// Log out
+  void logOut() {
+    _pocketBase.authStore.clear();
+  }
 }
