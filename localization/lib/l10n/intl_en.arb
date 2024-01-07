@@ -28,5 +28,6 @@
     "humidityInPercent": "%",
     "pressure": "Pressure",
     "pressureInHPa": "hPa",
-    "logout": "Logout"
+    "logout": "Logout",
+    "emailVerificationSentTo": "Email verification sent to {email}"
 }

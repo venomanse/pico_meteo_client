@@ -2,6 +2,7 @@ import 'package:business/redux/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ui/pages/splash_page.dart';
+import 'package:ui/snackbars/base_snackbart.dart';
 
 import '../connectors/forgot_password_page_connector.dart';
 import '../connectors/home_page_connector.dart';
@@ -10,8 +11,6 @@ import '../connectors/registration_page_connector.dart';
 import '../connectors/reset_password_page_connector.dart';
 import '../dialogs/exception_dialog.dart';
 import 'routers_flow.dart';
-
-final navigatorKey = GlobalKey<NavigatorState>();
 
 class Routes {
   static const initial = 'initial';
@@ -116,4 +115,12 @@ class RoutersMap {
           ),
         ],
       );
+}
+
+extension RoutesExtension on GoRouter {
+  void showSnackBar(BaseSnackBar model) {
+    final context = routerDelegate.navigatorKey.currentContext!;
+    final snackBar = model.build(context);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 }

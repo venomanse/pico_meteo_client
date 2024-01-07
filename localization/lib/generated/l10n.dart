@@ -349,6 +349,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Email verification sent to {email}`
+  String emailVerificationSentTo(Object email) {
+    return Intl.message(
+      'Email verification sent to $email',
+      name: 'emailVerificationSentTo',
+      desc: '',
+      args: [email],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
