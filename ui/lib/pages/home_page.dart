@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 import '../calendar/week_calendar.dart';
 import '../charts/measurement_chart.dart';
@@ -8,6 +9,7 @@ import '../selectors/measurement_selector.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
+    required this.drawer,
     required this.isWaiting,
     required this.calendar,
     required this.type,
@@ -15,6 +17,7 @@ class HomePage extends StatelessWidget {
     super.key,
   });
 
+  final Widget drawer;
   final bool isWaiting;
   final WeekCalendarVm calendar;
   final ValueChangedVm<MeasurementType> type;
@@ -22,6 +25,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: Text(S.current.home),
+        ),
+        drawer: drawer,
         body: SafeArea(
           child: Column(
             children: [

@@ -2,10 +2,10 @@ import 'package:async_redux/async_redux.dart';
 import 'package:business/redux/app_state.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:ui/pages/___connector_name____page.dart';
+import 'package:ui/drawers/main_drawer.dart';
 
-class ___ConnectorName___PageConnector extends StatelessWidget {
-  const ___ConnectorName___PageConnector({
+class MainDrawerConnector extends StatelessWidget {
+  const MainDrawerConnector({
     super.key,
   });
 
@@ -13,13 +13,12 @@ class ___ConnectorName___PageConnector extends StatelessWidget {
   Widget build(BuildContext context) => StoreConnector<AppState, _Vm>(
         debug: this,
         vm: () => _Factory(this),
-        builder: (context, vm) => const ___ConnectorName___Page(),
+        builder: (context, vm) => const MainDrawer(),
       );
 }
 
 /// Factory that creates a view-model for the StoreConnector.
-class _Factory
-    extends VmFactory<AppState, ___ConnectorName___PageConnector, _Vm> {
+class _Factory extends VmFactory<AppState, MainDrawerConnector, _Vm> {
   _Factory(super._connector);
 
   @override

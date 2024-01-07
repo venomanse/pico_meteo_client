@@ -13,6 +13,7 @@ import 'package:ui/models/value_changed.dart';
 import 'package:ui/pages/home_page.dart';
 
 import '../mappers/measurement_type.dart';
+import 'widgets/main_drawer_connector.dart';
 
 class HomePageConnector extends StatelessWidget {
   const HomePageConnector({
@@ -27,6 +28,7 @@ class HomePageConnector extends StatelessWidget {
           RetrieveBme280MeasurementsAction(selectedDay: null),
         ),
         builder: (context, vm) => HomePage(
+          drawer: const MainDrawerConnector(),
           isWaiting: vm.isWaiting,
           calendar: vm.calendar,
           type: vm.type,
@@ -36,8 +38,8 @@ class HomePageConnector extends StatelessWidget {
 }
 
 /// Factory that creates a view-model for the StoreConnector.
-class _Factory extends BaseFactory<HomePageConnector, _Vm> {
-  _Factory(super.connector);
+class _Factory extends VmFactory<AppState, HomePageConnector, _Vm> {
+  _Factory(super._connector);
 
   @override
   _Vm fromStore() {
