@@ -1,9 +1,11 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:business/redux/app_state.dart';
 import 'package:business/redux/session/actions/log_out_action.dart';
+import 'package:business/redux/session/session_selectors.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/drawers/main_drawer.dart';
+import 'package:ui/models/image.dart';
 
 class MainDrawerConnector extends StatelessWidget {
   const MainDrawerConnector({
@@ -26,12 +28,16 @@ class _Factory extends VmFactory<AppState, MainDrawerConnector, _Vm> {
 
   @override
   _Vm fromStore() {
-    const username = 'username';
+    final user = selectSessionUser(state)!;
 
     return _Vm(
       drawer: MainDrawerVm(
-        username: username,
-        onLogout: () async => dispatchAsync(LogOutAction()),
+        username: user.username,
+        avatar: RemoteImageVm(
+          url: user.avatar,
+        ),
+        onLogoutPressed: () async => dispatchAsync(LogOutAction()),
+        onHeaderPressed: () {},
       ),
     );
   }
