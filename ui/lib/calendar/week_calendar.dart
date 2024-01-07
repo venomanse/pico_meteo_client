@@ -7,18 +7,16 @@ import '../models/value_changed.dart';
 class WeekCalendarVm extends Equatable {
   const WeekCalendarVm({
     required this.lastDay,
-    required this.focusedDay,
     required this.firstDay,
     required this.selectedDay,
   });
 
   final DateTime lastDay;
-  final DateTime focusedDay;
   final DateTime firstDay;
   final ValueChangedVm<DateTime> selectedDay;
 
   @override
-  List<Object?> get props => [lastDay, focusedDay, firstDay];
+  List<Object?> get props => [lastDay, firstDay, selectedDay];
 }
 
 class WeekCalendar extends StatefulWidget {
@@ -38,7 +36,8 @@ class _WeekCalendarState extends State<WeekCalendar> {
   Widget build(BuildContext context) => TableCalendar(
         firstDay: widget.vm.firstDay,
         lastDay: widget.vm.lastDay,
-        focusedDay: widget.vm.focusedDay,
+        focusedDay: widget.vm.selectedDay.value,
+        startingDayOfWeek: StartingDayOfWeek.monday,
         selectedDayPredicate: (day) =>
             isSameDay(day, widget.vm.selectedDay.value),
         onDaySelected: (selectedDay, focusedDay) =>

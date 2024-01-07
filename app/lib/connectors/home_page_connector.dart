@@ -44,7 +44,6 @@ class _Factory extends BaseFactory<HomePageConnector, _Vm> {
     final selectedDay = selectBme280MeasurementsViewSelectedDay(state);
     final lastDay = selectBme280MeasurementsViewLastDay(state);
     final firstDay = selectBme280MeasurementsViewFirstDay(state);
-    final focusedDay = selectBme280MeasurementsViewFocusedDay(state);
     final sortedView = selectBme280MeasurementsViewSortedView(state);
     final type = selectBme280MeasurementsViewMeasurementType(state).asView();
     final items = sortedView.map(
@@ -66,7 +65,6 @@ class _Factory extends BaseFactory<HomePageConnector, _Vm> {
       isWaiting: false,
       calendar: WeekCalendarVm(
         lastDay: lastDay,
-        focusedDay: focusedDay,
         firstDay: firstDay,
         selectedDay: ValueChangedVm(
           value: selectedDay,

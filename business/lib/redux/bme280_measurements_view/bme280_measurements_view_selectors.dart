@@ -17,10 +17,6 @@ DateTime selectBme280MeasurementsViewLastDay(AppState state) {
 /// Returns the first day.
 DateTime selectBme280MeasurementsViewFirstDay(AppState state) => DateTime(2024);
 
-/// Returns the focused day.
-DateTime selectBme280MeasurementsViewFocusedDay(AppState state) =>
-    DateTime.now();
-
 /// Returns the sorted view.
 IList<String> selectBme280MeasurementsViewSortedView(AppState state) =>
     state.bme280MeasurementsView.sortedView;
