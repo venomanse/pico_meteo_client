@@ -9,7 +9,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:ui/models/value_changed.dart';
 import 'package:ui/pages/registration_page.dart';
-import 'package:ui/snackbars/base_snackbart.dart';
+import 'package:ui/snack_bars/base_snack_bar.dart';
 
 import '../common/validators.dart';
 import '../navigation/routes.dart';
