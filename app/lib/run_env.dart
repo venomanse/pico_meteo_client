@@ -16,11 +16,19 @@ import 'app.dart';
 Future<void> runEnv(Environment env) async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  /// Initialize logging
+  prettyLogging(
+    enable: kDebugMode,
+    ignoredLoggers: ['GoRouter'],
+  );
+
+  /// Set window size and title
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowTitle('Meteo');
     setWindowMinSize(const Size(320, 568));
   }
 
+  /// Set status bar color
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.black,
@@ -28,15 +36,11 @@ Future<void> runEnv(Environment env) async {
     ),
   );
 
-  prettyLogging(
-    enable: kDebugMode,
-    ignoredLoggers: ['GoRouter'],
-  );
-
+  /// Initialize store and service locator
   final store = newStore();
-
   await initLocator(store, env);
 
+  /// Run app
   runApp(
     StoreProvider(
       store: store,

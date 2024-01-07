@@ -40,7 +40,7 @@ class RoutersMap {
 
     _currentFlow = flow;
 
-     final newRouter = switch (flow) {
+    final newRouter = switch (flow) {
       AuthFlow() => _authRouter,
       SplashFlow() => _splashRouter,
       HomeFlow() => _homeRouter,
@@ -71,8 +71,9 @@ class RoutersMap {
             path: '/home',
             pageBuilder: (context, state) => MaterialPage<void>(
               key: state.pageKey,
-              child:
-                  const ExceptionDialog<AppState>(child: HomePageConnector()),
+              child: const ExceptionDialog<AppState>(
+                child: HomePageConnector(),
+              ),
             ),
           ),
         ],
