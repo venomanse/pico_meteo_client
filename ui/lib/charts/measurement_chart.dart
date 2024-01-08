@@ -200,8 +200,8 @@ class _MeasurementChartState extends State<MeasurementChart> {
                 return Text(
                   '$temperature',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground,
                     fontSize: 10,
                   ),
                 );
@@ -216,8 +216,8 @@ class _MeasurementChartState extends State<MeasurementChart> {
               interval: 3600 * 8,
               getTitlesWidget: (value, meta) => Text(
                 _secondsToTimeString(value.toInt()),
-                style: const TextStyle(
-                  color: Colors.black,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
                   fontSize: 10,
                 ),
               ),

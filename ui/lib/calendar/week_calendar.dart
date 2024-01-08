@@ -34,6 +34,16 @@ class WeekCalendar extends StatefulWidget {
 class _WeekCalendarState extends State<WeekCalendar> {
   @override
   Widget build(BuildContext context) => TableCalendar(
+        calendarStyle: CalendarStyle(
+          todayDecoration: BoxDecoration(
+            color: Theme.of(context).primaryColor.withOpacity(0.8),
+            shape: BoxShape.circle,
+          ),
+          selectedDecoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            shape: BoxShape.circle,
+          ),
+        ),
         firstDay: widget.vm.firstDay,
         lastDay: widget.vm.lastDay,
         focusedDay: widget.vm.selectedDay.value,

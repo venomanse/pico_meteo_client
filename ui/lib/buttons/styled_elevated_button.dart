@@ -7,7 +7,7 @@ class StyledElevatedButton extends StatelessWidget {
     this.borderColor,
     this.backgroundColor,
     this.foregroundColor,
-    this.width = 200,
+    this.width = 120,
     this.height = 48,
     this.borderRadius = const BorderRadius.all(Radius.circular(25)),
     super.key,
@@ -24,8 +24,6 @@ class StyledElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).elevatedButtonTheme.style;
-
     final newStyle = ElevatedButton.styleFrom(
       minimumSize: Size(width, height),
       foregroundColor: foregroundColor,
@@ -39,7 +37,7 @@ class StyledElevatedButton extends StatelessWidget {
     );
 
     return ElevatedButton(
-      style: style?.merge(newStyle),
+      style: newStyle,
       onPressed: onPressed,
       child: Text(title),
     );
